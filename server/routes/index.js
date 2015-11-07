@@ -42,8 +42,12 @@ function linearize(blocks, block_width, blocks_per_row) {
 
     var colInBlock = col % block_width;
     var rowInBlock = row % block_width;
-
-    points[i] = blocks[block][colInBlock + rowInBlock * block_width];
+    try {
+      points[i] = blocks[block][colInBlock + rowInBlock * block_width];
+    } catch(e) {
+      console.error('Error parsing block ' + i, blocks[block]);
+      throw new Error('Linearize failed in block #' + i);
+    }
     if(points[i] > 0 && points[i] < min) min = points[i];
     if(points[i] > max) max = points[i];
   }
@@ -90,6 +94,10 @@ router.post('/display', upload.single('tiff'), function(req, res, next) {
       median: median(JSON.parse(JSON.stringify(pointData.points.filter(function(p) { return p >= 0; })))),
       tuples: compress(pointData.points)
     };
+  }, function(err) {
+    console.error('Parsing failed!');
+    console.log(err);
+    res.send(500);
   }).then(function(compressedData) {
     console.log('FINAL: ', compressedData.tuples.length / 2);
     res.render('display', {
