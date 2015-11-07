@@ -1,1 +1,0 @@
-web: server/bin/www
