@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 GeoTIFF viewer
+  p Visualise GeoTIFF from your browser
+  form(method="post", action="/display", enctype="multipart/form-data")
+    input(name="tiff", type="file")
+    button(type="submit") Upload & parse

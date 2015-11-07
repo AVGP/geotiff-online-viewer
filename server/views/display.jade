@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  style.
+    body { padding: 0; margin: 0; }
+    #loading { width: 100%; text-align: center; }
+
+  div#loading
+    h1 Loading the data...
+    img(src="loading.gif" alt="Loading data... this may take some time!")
+    h2 It's huge, be patient please :)
+
+  script(src="http://hammerjs.github.io/dist/hammer.min.js")
+  script.
+    tuples = [#{points}];
+    min = #{minHeight};
+    max = #{maxHeight};
+    median = #{medianHeight};
+  script(src="javascripts/app.js")

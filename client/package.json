@@ -1,0 +1,22 @@
+{
+  "name": "geotiff-viewer",
+  "version": "1.0.0",
+  "description": "Client to visualise the compressed JSON pointcloud in Three.js",
+  "main": "app.js",
+  "scripts": {
+    "build": "browserify js/main.js | uglifyjs -mc > ../server/public/javascripts/app.js",
+    "dev": "watchify -v -o ../server/public/javascripts/app.js js/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "leapjs": "0.6.4",
+    "three": "0.71.0",
+    "three-world": "2.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^8.1.3",
+    "uglify-js": "^2.4.16",
+    "watchify": "^2.3.0"
+  }
+}
