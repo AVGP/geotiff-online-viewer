@@ -63,7 +63,7 @@ var colors = [
   [1.0 , 0.0 , 0.0 ],
 ];
 
-var colorStep = Math.ceil((max-median) / colors.length);
+var colorStep = Math.ceil((max-median) / (2*colors.length));
 
 // Parse the JSON
 
@@ -73,7 +73,7 @@ var i = 0, v = 0;
 for(var t=0; t<tuples.length; t+=2) {
   for(var r=0;r<tuples[t+1]; r++) {
     vertices[v + 1] = tuples[t] - min;
-    var cIndex = Math.floor((tuples[t] - min) / colorStep);
+    var cIndex = Math.floor((tuples[t] - min) / colorStep) % colors.length;
 
     if(cIndex < 0) cIndex = 0;
     else if(cIndex > colors.length - 1) cIndex = colors.length - 1;
