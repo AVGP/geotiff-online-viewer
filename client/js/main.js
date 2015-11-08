@@ -98,7 +98,8 @@ var tRendering = (new Date() - tStart);
 console.log('Rendering after ' + tRendering + ' ms');
 
 var loader = document.getElementById('loading');
-loader.parentNode.removeChild(loader);
+if(loader && loader.parentNode) loader.parentNode.removeChild(loader);
+
 World.getRenderer().domElement.style.display = 'block';
 
 World.start();
